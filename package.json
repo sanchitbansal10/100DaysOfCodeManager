@@ -1,0 +1,29 @@
+{
+  "name": "100daysofcodemanager",
+  "version": "1.0.0",
+  "description": "A webapp to make 100daysofcode progress loggin swift",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon ./server/server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanchitbansal10/100DaysOfCodeManager.git"
+  },
+  "author": "sb10",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanchitbansal10/100DaysOfCodeManager/issues"
+  },
+  "homepage": "https://github.com/sanchitbansal10/100DaysOfCodeManager#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
