@@ -1,38 +1,37 @@
+
 const bodyParser = require('body-parser');
 var Data = require('./models/data')
 const express = require('express');
-const app = express();
+
 const port = process.env.PORT || 5000;
 const router = express.Router()
 const mongoose = require('mongoose')
 
-
-var mongoDB = 'mongodb://edgar212:edgar212m@ds247357.mlab.com:47357/100daysofcode';
-mongoose.connect(mongoDB, { useMongoClient: true })
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.Promise = global.Promise;mongoose.connect("mongodb://localhost:27017/100DaysOfCode");
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// create application/json parser
+//parses content type application/json
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+//this will parse the request content of contentType (x-www-form-urlencoded)
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+const app = express();
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
-router.route('/form')
-.get(function(req,res){
-  res.send({express:'hello get'})
-})
-.post(function(req,res){
+
+app.post('/form',jsonParser,function(req,res){
   var data = new Data(req.body);
-  
   data.save(function(err,res){
     if(err){
-    console.log('error in post request')}
+    console.log('error in saving')}
   })
 })
 
-app.use('/',router)
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -78,11 +78,11 @@ class Form extends Component {
         return(
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <Date value={this.state.date} controlFunction={this.changeDate.bind(this)} />
-                <Time value={this.state.startTime} controlFunction={this.changeStartTime.bind(this)} />
-                <Time value={this.state.endTime} controlFunction={this.changeEndTime.bind(this)} />
+                <Time value={this.state.startTime} controlFunction={this.changeStartTime.bind(this)} timeTitle='Start Time' />
+                <Time value={this.state.endTime} controlFunction={this.changeEndTime.bind(this)} timeTitle='End Time' />
                 <Title value={this.state.title} controlFunction={this.changeTitle.bind(this)} />
-                <Thoughts value={this.state.thoughts} controlFunction={this.changeThoughts.bind(this)} />
-                <Thoughts value={this.state.whatILearned} controlFunction={this.changeWhatILearned.bind(this)} />
+                <Thoughts value={this.state.thoughts} controlFunction={this.changeThoughts.bind(this)} title='Thoughts' />
+                <Thoughts value={this.state.whatILearned} controlFunction={this.changeWhatILearned.bind(this)} title= 'What I Learned'/>
                 <LinkToWork value={this.state.linkToWork} controlFunction={this.changeLinkToWork.bind(this)} />
                 <Tags value={this.state.tags} controlFunction={this.changeTags.bind(this)} />
                 <input type="submit"/>

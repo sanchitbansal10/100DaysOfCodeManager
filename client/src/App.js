@@ -4,15 +4,10 @@ import axios from 'axios'
 
 class App extends Component {
 
-  
-
+//axios by default send request in contenttype JSON
   sendPostRequest(req){
     axios.post('/form', req)
-    .then(function (response) {
-      console.log('response')})
-    .catch(err => {
-      console.error(err);
-    });
+    console.log('sendPostRequest is called')
   }
 
   render() {
