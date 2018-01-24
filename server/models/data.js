@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var DataSchema = new Schema({
-    Date:Date,
+    date:String,
     startTime:String,
     endTime:String,
     title:String,
