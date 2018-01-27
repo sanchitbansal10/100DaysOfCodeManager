@@ -6,6 +6,9 @@ const express = require('express');
 const port = process.env.PORT || 5000;
 const router = express.Router()
 const mongoose = require('mongoose')
+const extractOne = require('./controller/extractOne')
+const submitData = require('./controller/submitData')
+const extractMultiple = require('./controller/extractMultiple')
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/100DaysOfCode");
@@ -20,31 +23,12 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const app = express();
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
 
+app.post('/form',jsonParser,submitData)
 
-app.post('/form',jsonParser,function(req,res){
-  var data = new Data(req.body);
-  console.log(data)
-  data.save(function(err,res){
-    if(err){
-    console.log('error in saving')}
-    if(res){
-      console.log(res)
-    }
-  })
-})
+app.get('/extractOne',extractOne)
 
-app.get('/extractOne',function(req,res){
-  var date = req.query.date;
-  var data;
-  Data.findOne({'date':date},function(err,result){
-    data = result
-    res.json(result)
-  })
-})
+app.get('/extractMultiple',extractMultiple)
 
 
 

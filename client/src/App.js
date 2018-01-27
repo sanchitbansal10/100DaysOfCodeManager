@@ -3,6 +3,7 @@ import Form from './components/Form'
 import Date from './components/form-components/Date'
 import axios from 'axios'
 import Query from './components/Query'
+import QueryMultiple from './components/QueryMultiple';
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
       <div>
         <Form sendPostRequest={this.sendPostRequest.bind(this)}/>
         <Query extractOne= {this.extractOne.bind(this)} />
+        <QueryMultiple />
       </div>
     );
   }
