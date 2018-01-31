@@ -1,18 +1,68 @@
 import React from 'react';
+import '../showData.css'
 
-const ShowQuery = (props)=>(
+const ShowQuery = (props)=>{
+    if(props.content!==null){
+        return(
     <div>
-        <ul>
-            <li>date:{props.content.data.date}</li>
-            <li>startTime:{props.content.data.startTime}</li>
-            <li>endTime:{props.content.data.endTime}</li>
-            <li>title:{props.content.data.title}</li>
-            <li>thoughts:{props.content.data.thoughts}</li>
-            <li>whatILearned:{props.content.data.whatILearned}</li>
-            <li>linkToWork:{props.content.data.linkToWork}</li>
-            <li>tags:{props.content.data.tag}</li>
-        </ul>
-    </div>
-)
+        <table>
+            <tr>
+                <th>date</th>
+                <td>{props.content.date}</td>
+            </tr>
+        {props.content.startTime!==""?
+            <tr>
+                <th>from</th>
+                <td>{props.content.startTime}</td>
+            </tr>
+        :null}
+
+        {props.content.endTime!==""?
+            <tr>
+                <th>to</th>
+                <td>{props.content.endTime}</td>
+            </tr>
+        :null}
+
+        {props.content.title!==""?
+            <tr>
+                <th>title</th>
+                <td>{props.content.title}</td>
+            </tr>
+        :null}
+
+        {props.content.thoughts!==""?
+            <tr>
+                <th>thoughts</th>
+                <td>{props.content.thoughts}</td>
+            </tr>
+        :null}
+
+        {props.content.whatILearned!==""?
+            <tr>
+                <th>whatILearned</th>
+                <td>{props.content.whatILearned}</td>
+            </tr>
+        :null}
+
+        {props.content.linkToWork!==""?
+            <tr>
+                <th>linkToWork</th>
+                <td>{props.content.linkToWork}</td>
+            </tr>
+        :null}
+
+        {props.content.tags!==""?
+            <tr>
+                <th>tags</th>
+                <td>{props.content.tags}</td>
+            </tr>
+        :null}
+        </table>
+    </div>)}
+    else {
+        return null
+    }
+}
 
 export default ShowQuery

@@ -19,7 +19,7 @@ class Query extends Component{
             ()=>{
         axios.get(`/extractOne?date=${this.state.date}`)
         .then((response)=>{
-        this.setState({data:response})
+        this.setState({data:response.data})
         })}
         )
     }
@@ -33,6 +33,7 @@ class Query extends Component{
             <div>
                 <label>Date</label>
                 <input type="date" onChange={this.onDateChange}/>
+                {console.log(this.state.data)}
                 <input type="submit" onClick={(event)=>this.extractOne(this.state.date)}/>
                 {this.state.toggle?<ShowQuery content={this.state.data}/>:null}
             </div>

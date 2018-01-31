@@ -4,6 +4,7 @@ import Date from './components/form-components/Date'
 import axios from 'axios'
 import Query from './components/Query'
 import QueryMultiple from './components/QueryMultiple';
+import ShowLast10Days from './components/ShowLast10Days'
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
         <Form sendPostRequest={this.sendPostRequest.bind(this)}/>
         <Query extractOne= {this.extractOne.bind(this)} />
         <QueryMultiple />
+        <ShowLast10Days />
       </div>
     );
   }

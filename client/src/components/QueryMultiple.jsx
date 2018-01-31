@@ -12,8 +12,9 @@ class QueryMultiple extends Component{
             data:{}
         }
         this.onDateChange= this.onDateChange.bind(this)
-        this.extractOne= this.extractOne.bind(this)
+        this.extractMultiple= this.extractMultiple.bind(this)
         this.onNumberChange= this.onNumberChange.bind(this)
+        this.setToggle = this.setToggle.bind(this)
     }
 
     onDateChange(event){
@@ -24,13 +25,18 @@ class QueryMultiple extends Component{
         this.setState({number:event.target.value})
     }
 
-    extractOne(date){
-        this.setState({toggle:true},()=>{
+    setToggle(){
+        console.log('setToggle called')
+        this.setState({toggle:true})
+    }
+
+     extractMultiple(date){
             axios.get(`/extractMultiple?date=${this.state.date}&number=${this.state.number}`)
             .then((response)=>{
             this.setState({data:response})
-            })})
-    }
+            })
+            .then(this.setToggle)
+        }
 
     render(){
         return(
@@ -38,7 +44,7 @@ class QueryMultiple extends Component{
                 <label>Date</label>
                 <input type="date" onChange={this.onDateChange}/>
                 <input type="number" value= {this.state.number} onChange={this.onNumberChange}/>
-                <input type="submit" onClick={(event)=>this.extractOne(this.state.date)}/>
+                <input type="submit" onClick={(event)=>this.extractMultiple(this.state.date)}/>
                 
             </div>
         )
