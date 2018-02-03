@@ -5,7 +5,9 @@ import Time from "./form-components/Time";
 import Title from "./form-components/Title";
 import Thoughts from "./form-components/Thoughts";
 import LinkToWork from "./form-components/LinkToWork";
-import Tags from "./form-components/Tags"
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
+
 
 class Form extends Component {
     constructor(props) {
@@ -18,7 +20,7 @@ class Form extends Component {
             thoughts:'',
             whatILearned:'',
             linkToWork:'',
-            tags:''
+            tags:[]
         }
     }
 
@@ -43,8 +45,8 @@ class Form extends Component {
     changeLinkToWork(event){
         this.setState({linkToWork:event.target.value})
     }
-    changeTags(event){
-        this.setState({tags:event.target.value})
+    handleTags(tags) {
+        this.setState({tags})
     }
     handleSubmit(event){
         event.preventDefault();
@@ -68,7 +70,7 @@ class Form extends Component {
                 thoughts:'',
                 whatILearned:'',
                 linkToWork:'',
-                tags:''
+                tags:[]
             }
         )
     }
@@ -84,7 +86,7 @@ class Form extends Component {
                 <Thoughts value={this.state.thoughts} controlFunction={this.changeThoughts.bind(this)} title='Thoughts' />
                 <Thoughts value={this.state.whatILearned} controlFunction={this.changeWhatILearned.bind(this)} title= 'What I Learned'/>
                 <LinkToWork value={this.state.linkToWork} controlFunction={this.changeLinkToWork.bind(this)} />
-                <Tags value={this.state.tags} controlFunction={this.changeTags.bind(this)} />
+                <TagsInput value={this.state.tags} onChange={this.handleTags.bind(this)} />
                 <input type="submit"/>
             </form>
         )

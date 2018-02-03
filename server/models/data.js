@@ -10,7 +10,7 @@ var DataSchema = new Schema({
     thoughts:String,
     whatILearned:String,
     linkToWork:String,
-    tags:String
+    tags:[String]
 })
 
 module.exports = mongoose.model('Data',DataSchema)

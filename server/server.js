@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const extractOne = require('./controller/extractOne')
 const submitData = require('./controller/submitData')
 const extractMultiple = require('./controller/extractMultiple')
+const extractTags = require('./controller/extractTags')
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/100DaysOfCode");
@@ -29,6 +30,8 @@ app.post('/form',jsonParser,submitData)
 app.get('/extractOne',extractOne)
 
 app.get('/extractMultiple',extractMultiple)
+
+app.get('/extractTags', extractTags)
 
 
 
