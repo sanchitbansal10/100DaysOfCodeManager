@@ -23,13 +23,12 @@ let extractTags = (req,res) =>{
     Data.find({ tags : 'hav' }, function (err, data) {    this is working but when i replace pass tag through the variable its not why<><><>
                                                         IT WAS BECAUSE I WAS QUERYING WRONG THE URL I WAS USING WAS LOCALHOST:5000/EXTRACTTAGS?TAG='HAV'   SHOULD NOT HAVE PLACED ASTERICS AROUND HAV
         console.log(tag)
-        console.log(data)                               
+        console.log(data)
         res.json('shit')
     }) */
 
     var tag = req.query.tag;
     Data.find({'tags' : tag}, function(err, data){
-        console.log(data)
         res.json(data)
     })
 }

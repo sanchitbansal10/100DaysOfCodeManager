@@ -33,7 +33,7 @@ class ShowLast10Days extends Component{
                     (element)=>{
                        return <ShowQuery content={element}/>
                     }
-                )} 
+                )}
             </div>
         )
         

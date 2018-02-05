@@ -1,17 +1,16 @@
 import React , { Component } from 'react';
 import axios from 'axios';
-import ShowQuery from './ShowQuery'
+import ShowQuery from './ShowQuery';
+import '../index.css'
 
 class Query extends Component{
     constructor(){
         super()
         this.state={
             date:'',
-            toggle:false,
-            data:{}
+            data:null
         }
         this.onDateChange= this.onDateChange.bind(this)
-        this.extractOne= this.extractOne.bind(this)
     }
 
     onDateChange(event){
@@ -24,18 +23,14 @@ class Query extends Component{
         )
     }
 
-    extractOne(date){
-        this.setState({toggle:true})
-    }
 
     render(){
         return(
             <div>
                 <label>Date</label>
                 <input type="date" onChange={this.onDateChange}/>
-                {console.log(this.state.data)}
-                <input type="submit" onClick={(event)=>this.extractOne(this.state.date)}/>
-                {this.state.toggle?<ShowQuery content={this.state.data}/>:null}
+                {console.log(this.state.data)}  
+                <ShowQuery className='right-panel' content={this.state.data}/>
             </div>
         )
     }

@@ -1,6 +1,9 @@
 import React from 'react';
 import '../showData.css'
 
+//this is the smaller component which will be used in different large components(in query,querymultiple,querytag etc)
+//this design pattern is called container component
+
 const ShowQuery = (props)=>{
     if(props.content!==null){
         return(
