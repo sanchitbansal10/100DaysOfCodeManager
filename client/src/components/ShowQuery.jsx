@@ -1,5 +1,5 @@
 import React from 'react';
-import '../showData.css'
+import '../styles/showData.css'
 
 //this is the smaller component which will be used in different large components(in query,querymultiple,querytag etc)
 //this design pattern is called container component
@@ -7,8 +7,9 @@ import '../showData.css'
 const ShowQuery = (props)=>{
     if(props.content!==null){
         return(
-    <div>
+    <div className='table-wrap'>
         <table>
+            <tbody>
             <tr>
                 <th>date</th>
                 <td>{props.content.date}</td>
@@ -61,6 +62,7 @@ const ShowQuery = (props)=>{
                 <td>{props.content.tags}</td>
             </tr>
         :null}
+        </tbody>
         </table>
     </div>)}
     else {

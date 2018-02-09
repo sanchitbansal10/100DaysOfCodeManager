@@ -1,0 +1,42 @@
+
+
+.form-wrap{
+    width:80%
+}
+form{
+    width: auto;
+    box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+    background: #78acd4
+}
+label {
+    display: block;
+    padding:3px;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    background: #c3cfd8;
+    border-radius:4px;
+    border:1px solid #96b3c9;
+    color:rgb(19, 39, 104);
+    text-align: center
+   }
+
+input{
+    text-align: center
+}
+
+ 
+textarea {
+ display: block;
+ padding: .5rem .75rem;
+ width:90%;
+ font-size: 1rem;
+ line-height: 1.25;
+ color: #55595c;
+ background-color: #fff;
+ background-image: none;
+ background-clip: padding-box;
+
+}
+

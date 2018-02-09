@@ -4,7 +4,7 @@ import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import QueryMultiple from './QueryMultiple';
 import ShowQuery from './ShowQuery';
-import '../index.css'
+import '../styles/index.css'
 
 class QueryTags extends Component{
     constructor(){

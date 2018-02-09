@@ -6,8 +6,10 @@ import Query from './components/Query'
 import QueryMultiple from './components/QueryMultiple';
 import ShowLast10Days from './components/ShowLast10Days'
 import QueryTags from './components/QueryTags'
-import './index.css'
+import './styles/index.css'
 import { Route,Link,Switch } from 'react-router-dom'
+import Title from './components/Title'
+import Account from './components/Account'
 
 
 class App extends Component {
@@ -24,14 +26,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main">
-        <div className='left-panel'>
-        <Route  path='/' render={props => <Form sendPostRequest={this.sendPostRequest.bind(this)} {...props} />}/>
-        <Route exact path='/extract' component={Query} />
-        <Link to='/extract'>Search by date</Link>
+      <div className="top">
+        <div className='top-panel'>
+          <Title />
+          <Account />
         </div>
-        <div className='right-panel'>
-          <Route  path='/' component={ShowLast10Days} />
+        <div className="main">
+          <div className='left-panel'>
+            <div className='left-nav'>
+            <Link className='left-nav-item' to='/submitWork'><div className='but'>Fill Today's Work</div></Link>
+            <Link className='left-nav-item' to='/extract'><div className='but'>Search by date</div></Link>
+            <Link className='left-nav-item' to='/extractTags'><div className='but'>Search by tags</div></Link>
+            </div>
+          </div>
+          <div className='right-panel'>
+            <Route exact path='/submitWork' render={props => <Form sendPostRequest={this.sendPostRequest.bind(this)} {...props} />}/>
+            <Route exact path='/' component={ShowLast10Days} />
+            <Route exact path='/extract' component={Query} />
+            <Route exact path='/extractTags' component={QueryTags} />
+          </div>
         </div>
       </div>
     );
