@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShowQuery from './ShowQuery'
+import ShowQueryFancy from './ShowQueryFancy'
 import axios from 'axios'
 
 class ShowLast10Days extends Component{
@@ -31,7 +31,7 @@ class ShowLast10Days extends Component{
             <div>
                 {this.state.data.map(
                     (element)=>{
-                       return <ShowQuery content={element}/>
+                       return <ShowQueryFancy content={element}/>
                     }
                 )}
             </div>

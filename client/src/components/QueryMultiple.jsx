@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import axios from 'axios';
-import ShowQuery from './ShowQuery'
+import ShowQueryFancy from './ShowQueryFancy'
 
 class QueryMultiple extends Component{
     constructor(){

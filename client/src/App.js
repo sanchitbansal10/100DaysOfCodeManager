@@ -10,6 +10,8 @@ import './styles/index.css'
 import { Route,Link,Switch } from 'react-router-dom'
 import Title from './components/Title'
 import Account from './components/Account'
+import ShowQueryFancy from './components/ShowQueryFancy';
+
 
 
 class App extends Component {
@@ -43,7 +45,10 @@ class App extends Component {
             <Route exact path='/submitWork' render={props => <Form sendPostRequest={this.sendPostRequest.bind(this)} {...props} />}/>
             <Route exact path='/' component={ShowLast10Days} />
             <Route exact path='/extract' component={Query} />
-            <Route exact path='/extractTags' component={QueryTags} />
+            <Route exact path='/extractTags/:item' component={QueryTags} />
+            <Route exact path='/extractTags/' component={QueryTags} />
+            {/* find some way to merge above two routes */}
+           {/*  <Route exact path='/extractTags/:item' component={ShowQueryFancyTagsItem} /> */}
           </div>
         </div>
       </div>

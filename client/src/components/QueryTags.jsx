@@ -3,7 +3,7 @@ import axios from 'axios';
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 import QueryMultiple from './QueryMultiple';
-import ShowQuery from './ShowQuery';
+import ShowQueryFancy from './ShowQueryFancy';
 import '../styles/index.css'
 
 class QueryTags extends Component{
@@ -11,7 +11,18 @@ class QueryTags extends Component{
         super()
         this.state={
             tags:'',
-            data:[]
+            data:[],
+            preDefinedTags:false
+        }
+    }
+
+    componentWillMount(){
+        if (this.props.match.params.item!==undefined){
+            this.setState({preDefinedTags:true})
+            axios.get(`/extractTags?tag=${this.props.match.params.item}`)
+            .then((response)=>{
+                this.setState({data:response.data})
+            })
         }
     }
     tagChange(event){
@@ -25,18 +36,31 @@ class QueryTags extends Component{
         })
     }
 
+
     render(){
+      
         return(
             <div>
-                <input type="text" placeholder='enter the tag' onChange={this.tagChange.bind(this)}/>
-                <input type="submit" onClick={this.submitReq.bind(this)}/>
-                <div className="right-panel">
-                    {this.state.data.map(
-                        (element)=>{
-                        return <ShowQuery content={element}/>
-                        }
-                    )} 
+                {this.state.preDefinedTags?
+                    <div className="right-panel">
+                        {this.state.data.map(
+                            (element)=>{
+                            return <ShowQueryFancy content={element}/>
+                            }
+                        )}
+                    </div>:
+                <div>
+                    <input type="text" placeholder='enter the tag' onChange={this.tagChange.bind(this)}/>
+                    <input type="submit" onClick={this.submitReq.bind(this)}/>
+                    <div className="right-panel">
+                        {this.state.data.map(
+                            (element)=>{
+                            return <ShowQueryFancy content={element}/>
+                            }
+                        )}
+                    </div>
                 </div>
+                }
             </div>
         )
     }

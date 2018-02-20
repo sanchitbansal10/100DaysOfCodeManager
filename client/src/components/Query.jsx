@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import axios from 'axios';
-import ShowQuery from './ShowQuery';
+import ShowQueryFancy from './ShowQueryFancy';
 import '../styles/index.css'
 
 class Query extends Component{
@@ -44,7 +44,9 @@ class Query extends Component{
             <div>
                 <label>Date</label>
                 <input type="date" value={this.state.date} onChange={this.onDateChange}/>
-                <ShowQuery content={this.state.data}/>
+                {this.state.data==null?null:
+                    <ShowQueryFancy content={this.state.data}/>
+                }
             </div>
         )
     }

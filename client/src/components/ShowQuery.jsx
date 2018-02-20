@@ -4,7 +4,7 @@ import '../styles/showData.css'
 //this is the smaller component which will be used in different large components(in query,querymultiple,querytag etc)
 //this design pattern is called container component
 
-const ShowQuery = (props)=>{
+const ShowQueryFancy = (props)=>{
     if(props.content!==null){
         return(
     <div className='table-wrap'>
@@ -70,4 +70,4 @@ const ShowQuery = (props)=>{
     }
 }
 
-export default ShowQuery
+export default ShowQueryFancy
