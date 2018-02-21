@@ -7,6 +7,16 @@ import WhatILearned from './show-query-components/WhatILearned'
 import LinkToWork from './show-query-components/LinkToWork';
 import Tags from './show-query-components/Tags';
 class ShowQueryFancy extends Component{
+    constructor(){
+        super();
+      
+    }
+
+    callback(tag){
+       this.props.callback(tag)
+    }
+    //showQueryFancy takes a callback function that deals with tag manipulation
+    
     render(){
         return(
             <div>
@@ -23,7 +33,7 @@ class ShowQueryFancy extends Component{
             <div className="col-3row-2 stuff"><Thoughts thoughts={this.props.content.thoughts}/></div>
             <div className="col-3row-3 stuff"><WhatILearned learned={this.props.content.whatILearned} /></div>
             <div className="col-3row-4 stuff"><LinkToWork linkToWork={this.props.content.linkToWork}/></div>
-            <div className="col-3row-5 stuff"><Tags tags={this.props.content.tags}/></div>
+            <div className="col-3row-5 stuff"><Tags callback={this.callback.bind(this)} tags={this.props.content.tags}/></div>
             </div>:null}
             </div>
         )

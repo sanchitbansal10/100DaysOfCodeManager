@@ -9,17 +9,10 @@ import { Route,Link,Switch } from 'react-router-dom'
 class Tags extends Component{
     constructor(){
         super()
-        this.state = {
-            ShowQueryFancyFancy:false,
-            data:null,
-            test:null
-        }
+        this.submitTag=this.submitTag.bind(this)
     }
     submitTag(item){
-        axios.get(`/extractTags?tag=${item}`)
-        .then((response)=>{
-            this.setState({data:response.data})
-        })
+        this.props.callback(item)
     }
 
     render(){
@@ -28,7 +21,7 @@ class Tags extends Component{
         <ShowQueryFancyFancy content={this.state.data} />
     ) */
     return(
-        <div>{this.props.tags.map((item)=><Link to={`/extractTags/${item}`}><button /* onClick={()=>this.submitTag(item)} */ className="tags-item">{item}</button></Link>)}</div>
+        <div>{this.props.tags.map((item)=><button  onClick={()=>this.submitTag(item)} className="tags-item">{item}</button>)}</div>
     )
     }
 }

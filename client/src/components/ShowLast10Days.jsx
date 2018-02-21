@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import ShowQueryFancy from './ShowQueryFancy'
 import axios from 'axios'
+import ShowQueryFromTags from './ShowQueryFromTags';
 
 class ShowLast10Days extends Component{
     constructor(){
         super()
-        this.state={data:[]}
+        this.state={
+            data:[],
+            renderQueryTag:false,
+            tag:null
+        }
+        this.callback = this.callback.bind(this)
     }
 
     componentDidMount(){
@@ -26,14 +32,21 @@ class ShowLast10Days extends Component{
             this.setState({data:response.data})
             })
     }
+
+    callback(tag){
+        this.setState({renderQueryTag:true,tag:tag})
+    }
+
     render(){
         return(
-            <div>
-                {this.state.data.map(
+            <div>{this.state.renderQueryTag?<ShowQueryFromTags callback={this.callback} tag={this.state.tag} />:
+            <div>{this.state.data.map(
                     (element)=>{
-                       return <ShowQueryFancy content={element}/>
+                       return <ShowQueryFancy callback={this.callback} content={element}/>
                     }
-                )}
+                )}</div>
+                }
+                
             </div>
         )
         

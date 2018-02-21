@@ -5,62 +5,37 @@ import 'react-tagsinput/react-tagsinput.css'
 import QueryMultiple from './QueryMultiple';
 import ShowQueryFancy from './ShowQueryFancy';
 import '../styles/index.css'
+import ShowQueryFromTags from './ShowQueryFromTags';
 
 class QueryTags extends Component{
     constructor(){
         super()
         this.state={
-            tags:'',
-            data:[],
-            preDefinedTags:false
+            tag:null,
+            showQuery:false
         }
+        this.callback=this.callback.bind(this)
     }
 
-    componentWillMount(){
-        if (this.props.match.params.item!==undefined){
-            this.setState({preDefinedTags:true})
-            axios.get(`/extractTags?tag=${this.props.match.params.item}`)
-            .then((response)=>{
-                this.setState({data:response.data})
-            })
-        }
-    }
+    
     tagChange(event){
-        this.setState({tags:event.target.value})
+        this.setState({tag:event.target.value})
     }
 
-    submitReq(){
-        axios.get(`/extractTags?tag=${this.state.tags}`)
-        .then((response)=>{
-            this.setState({data:response.data})
-        })
+    submit(){
+        this.setState({showQuery:true})
+    }
+
+    callback(tag){
+        this.setState({tag:tag})
     }
 
 
     render(){
       
-        return(
-            <div>
-                {this.state.preDefinedTags?
-                    <div className="right-panel">
-                        {this.state.data.map(
-                            (element)=>{
-                            return <ShowQueryFancy content={element}/>
-                            }
-                        )}
-                    </div>:
-                <div>
-                    <input type="text" placeholder='enter the tag' onChange={this.tagChange.bind(this)}/>
-                    <input type="submit" onClick={this.submitReq.bind(this)}/>
-                    <div className="right-panel">
-                        {this.state.data.map(
-                            (element)=>{
-                            return <ShowQueryFancy content={element}/>
-                            }
-                        )}
-                    </div>
-                </div>
-                }
+        return(<div>
+            <input type="text" onChange = {this.tagChange.bind(this)}/><input type="button" onClick={this.submit.bind(this)}/>
+            {this.state.showQuery?<ShowQueryFromTags renderedFromQueryTags={true}tag = {this.state.tag} callback={this.callback} />:null}
             </div>
         )
     }

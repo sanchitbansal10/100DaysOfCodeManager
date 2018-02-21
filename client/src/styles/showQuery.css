@@ -7,7 +7,7 @@
     grid-template-columns:100px auto 1fr;
     grid-template-rows: repeat(5, auto);
     background:var(--main-background);
-    color:var(--main-text)
+    color:var(--main-text);
 }
 
 
