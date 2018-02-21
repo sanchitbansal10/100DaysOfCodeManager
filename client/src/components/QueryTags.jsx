@@ -10,7 +10,7 @@ class QueryTags extends Component{
     constructor(){
         super()
         this.state={
-            tags:'',
+            tag:null,
             data:[],
             preDefinedTags:false
         }
@@ -18,11 +18,12 @@ class QueryTags extends Component{
 
     componentWillMount(){
         if (this.props.match.params.item!==undefined){
-            this.setState({preDefinedTags:true})
-            axios.get(`/extractTags?tag=${this.props.match.params.item}`)
-            .then((response)=>{
-                this.setState({data:response.data})
-            })
+            this.setState({preDefinedTags:true,tag:this.props.match.params.item},()=>{
+                axios.get(`/extractTags?tag=${this.state.tag}`)
+                .then((response)=>{
+                    this.setState({data:response.data})
+            })}
+            )
         }
     }
     tagChange(event){
@@ -36,9 +37,16 @@ class QueryTags extends Component{
         })
     }
 
-
+    componentWillReceiveProps(nextProp){
+        this.setState({tag:nextProp.match.params.item},()=>{
+            axios.get(`/extractTags?tag=${this.state.tag}`)
+            .then((response)=>{
+                this.setState({data:response.data})
+        })}
+        )
+    }
     render(){
-      
+
         return(
             <div>
                 {this.state.preDefinedTags?
